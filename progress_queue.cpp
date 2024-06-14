@@ -44,19 +44,14 @@ vector<int> solution(vector<int> progresses, vector<int> speeds) {
             p.pop();
             s.pop();
             count++; // count가 올라갔다는 것은 배포 루프가 돌았다는 의미임
-
-            cout << "2번쨰 while" << endl;
-
         }    
         
         if (count != 0) { // count가 0이 아니면 배포 루프가 돌았다는 의미임.
             tmp2.push(count);
-            cout << "count의 값 : " << count << endl;
         }
     }
 
     vector<int> answer(tmp2.size());
-    cout << "tmp2의 크기 : " << tmp2.size() << endl;
 
     int answer_size = tmp2.size();
     for (int i = 0; i < answer_size; i++) {
@@ -66,12 +61,14 @@ vector<int> solution(vector<int> progresses, vector<int> speeds) {
         }
 
     return answer;
+
+    // 책에서는 배포 가능일을 계산해서 한꺼번에 배포 가능한 것들을 묶어서 계산해내고 있음. 내일 이것도 해보자 쉬울거 같음.
 }
 
 int main() {
 
-    vector<int> progresses = {93, 30, 55};
-    vector<int> speeds = {1, 30, 5};
+    vector<int> progresses = {95,90,99,99,80,99};
+    vector<int> speeds = {1,1,1,1,1,1};
 
     vector<int> answer = solution(progresses, speeds);
 
