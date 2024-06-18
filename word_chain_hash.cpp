@@ -38,7 +38,7 @@ vector<int> solution(int n, vector<string> words) {
     for (int i = 1; i < words.size(); i++) {
         if (!usedWords.insert(words[i]).second || words[i].front() != words[i-1].back()) { 
             // set에 단어 삽입을 시도하고 second에 담기는 true나 false값을 보고 단어가 있는지 없는지 판단한다. 뒤에건 끝말잇기의
-            // 기본 규칙을 지키고 있는지 없는지 확인
+            // 기본 규칙을 지키고 있는지 확인
             answer[0] = i % n + 1; // 현재 순서인 사람의 번호
             answer[1] = i / n + 1; // 이 사람의 순서가 몇번째로 돌아온건지. 0부터 시작하는 인덱스를 그냥 나누고 +1을 해주면 쉽다.
             return answer;
