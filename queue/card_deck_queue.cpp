@@ -4,6 +4,7 @@
 #include <string>
 using namespace std;
 
+// 큐 - 카드 뭉치 문제
 string solution(vector<string> cards1, vector<string> cards2, vector<string> goal) {
     queue<string> q_cards1;
     queue<string> q_cards2;

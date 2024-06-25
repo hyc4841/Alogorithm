@@ -4,7 +4,7 @@
 
 using namespace std;
 
-
+// 스택 - 인형 뽑기 게임 문제
 int solution(vector<vector<int>> board, vector<int> moves) {
     
     stack<int> bucket;
