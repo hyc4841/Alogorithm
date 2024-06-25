@@ -4,6 +4,7 @@
 
 using namespace std;
 
+// 큐 - 기능 개발 문제. 내가 만든 버전
 vector<int> solution(vector<int> progresses, vector<int> speeds) {
     // progresses에는 순서대로 작업 진행도를 나타냄.
     // speeds에는 순서대로 작업 속도를 나타냄.

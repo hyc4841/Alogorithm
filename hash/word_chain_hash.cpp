@@ -6,6 +6,7 @@
 
 using namespace std;
 
+// 해시 - 영어 끝말 잇기 문제 
 
 /* 내가 unordered_map으로 구현한거. 잘 작동함.
 vector<int> solution(int n, vector<string> words){

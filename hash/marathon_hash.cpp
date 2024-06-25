@@ -5,6 +5,7 @@
 
 using namespace std;
 
+// 해시 - 완주하지 못한 선수 문제
 string solution(vector<string> participant, vector<string> completion) {
     unordered_map<string, int> ph; // 참여자 맵
 

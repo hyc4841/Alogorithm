@@ -4,6 +4,7 @@
 
 using namespace std;
 
+// 큐 - 기능 개발
 vector<int> solution(vector<int> progresses, vector<int> speeds) {
     // 이 방식은 각 작업의 배포 가능일을 먼저 계산하고 앞 작업의 배포 가능일에 같이 배포 가능한 애들을 계산해내는 것.
     // 먼저 배포 가능날짜를 계산해서 큐에 넣어야하나? 큐에 넣어야함.

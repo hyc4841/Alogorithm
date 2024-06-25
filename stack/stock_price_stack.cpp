@@ -4,6 +4,7 @@
 
 using namespace std;
 
+// 스택 - 주식 가격 문제(내 버전)
 vector<int> solution(vector<int> prices) {
     stack<int> index;
     vector<int> answer(prices.size());

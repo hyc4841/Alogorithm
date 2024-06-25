@@ -4,6 +4,8 @@
 
 using namespace std;
 
+// 트리 - 전위, 중위, 후위 순회 구현
+
 // 현재 노드를 부모 노드로 생각한다.
 // 전위 순회 : 부모 - 왼쪽 - 오른쪽. 
 string preorder(vector<int> nodes, int idx) {

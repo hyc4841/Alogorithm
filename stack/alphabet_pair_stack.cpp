@@ -3,7 +3,7 @@
 
 using namespace std;
 
-
+// 스택 - 짝지어 제거하기 문제
 int solution(string s) {    
     stack<char> tmp;
     // 스택에 먼저 집어넣기

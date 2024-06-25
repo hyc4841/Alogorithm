@@ -4,6 +4,7 @@
 
 using namespace std;
 
+// 배열 - 두 수 뽑아서 더하기 문제
 vector<int> solution(vector<int> numbers) {
     set<int> sum;
 

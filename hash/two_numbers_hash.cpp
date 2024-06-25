@@ -3,7 +3,7 @@
 
 using namespace std;
 
-
+// 해시 : 두개의 수로 특정 값 만들기 문제
 bool solution(vector<int> arr, int target) {
     // x + k = target인 x, k가 arr에 있으면 true를, 없으면 false를 내보낸다.
     // target - x = k를 해서 k가 arr의 원소면 true를 반환한다.

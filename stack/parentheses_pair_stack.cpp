@@ -4,6 +4,8 @@
 
 using namespace std;
 
+
+// 스택 - 괄호 짝 맞추기 문제. 내가 만든 버전
 bool solution(string s) {
 
     stack<char> st;

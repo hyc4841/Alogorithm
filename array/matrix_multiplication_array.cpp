@@ -3,6 +3,8 @@
 
 using namespace std;
 
+
+// 배열 - 행렬의 곱셈 구현
 // 2차원 배열 이용해서 행렬의 곱셈 구현하기
 vector<vector<int>> solution(vector<vector<int>> arr1, vector<vector<int>> arr2) {
 
@@ -25,8 +27,6 @@ vector<vector<int>> solution(vector<vector<int>> arr1, vector<vector<int>> arr2)
     else {
         cout << "arr1의 행의 길이와 arr2의 열 길이가 맞지 않습니다." << endl;
     }
-
-    
 }
 
 int main() {

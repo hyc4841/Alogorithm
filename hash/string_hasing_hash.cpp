@@ -5,6 +5,7 @@
 
 using namespace std;
 
+// 해시 - 문자열 해싱 구현
 long long polunomial_hash(const string& str) { // 문자열 해싱(다항 해싱) 방법 코드로 그대로 구현. 그런데 이 코드는 p를 역방향으로 적용함.
     const int p = 31;
     const long long m = 1000000007;

@@ -7,6 +7,7 @@
 
 using namespace std;
 
+// 해시 - 전화번호 목록 문제
 bool solution(vector<string> phoneBook) {
 // substr() : 문자열에 적용해서 하위 문자열로 변환하는 함수
 // substr(시작 인덱스, 몇개 추출), substr(시작 인덱스) : 시작 인덱스부터 끝까지 추출

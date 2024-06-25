@@ -7,7 +7,7 @@
 
 using namespace std;
 
-
+// 배열 - 모의고사 문제 (수포자의 찍기 문제)
 // 내가 구현한건 문제가 10000개 있다고 가정하고 문제 패턴을 넣고 돌린것.
 vector<int> solution(vector<int> answers) {
     int MAX_NUM = 10000; // 문제의 개수. 상수 정의하는거 알아두기
@@ -21,6 +21,7 @@ vector<int> solution(vector<int> answers) {
 
     set<int> tmp; // set은 내부에서 자동으로 오름차순 정렬을 해준다.
     
+
 
     // 정답 비교하기
     for (int i = 0; i < MAX_NUM; i++) {
