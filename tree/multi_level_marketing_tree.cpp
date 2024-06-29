@@ -28,11 +28,11 @@ vector<int> solution(vector<string> enroll, vector<string> referral, vector<stri
         total[name] = 0;
     }
 
-    for (size_t i = 0; i <seller.size(); i++) {
+    for (size_t i = 0; i < seller.size(); i++) {
         int money = amount[i] * 100; // 현재 판매원의 수익금
         string cur_name = seller[i]; // 실제 물건을 판 사람
 
-        while (money > 0 && cur_name != "-") {
+        while (money > 0 && cur_name != "-") { // 수익금이 0보다 크고 현재 사람의 이름이 -가 아니면 계속 한다.
             // 실제 물건을 판 사람을 기준으로 추천인을 계속 추적하며 남은 수익의 10%를 분배
             int to_distribute = money / 10; // 10% 떼기
             total[cur_name] += money - to_distribute; // 10%를 뗀 돈을 현재 이름에 들어간 사람의 수익금에 추가한다.
