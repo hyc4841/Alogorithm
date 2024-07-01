@@ -9,6 +9,7 @@ bool compare(vector<int> a, vector<int> b) {
     return a[2] < b[2];
 }
 
+// 그리디 + 상호배타적 집합. 사이클 감지로 푸는 문제
 
 int solution(int n, vector<vector<int>> costs) {
     // 최소 비용이 되도록 하는 방법
