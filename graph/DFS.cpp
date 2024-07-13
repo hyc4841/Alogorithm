@@ -5,47 +5,52 @@
 
 using namespace std;
 
-unordered_map<char, vector<char>> adjList; // 인접 리스트
-vector<char> result; // 방문 경로
-unordered_set<char> visited; // 방문한 노드 기록용
+unordered_map<char, vector<char>> adjList; // map으로 인접 리스트를 구현함. value로 vector가 들어가는 이유는 해당 노드의 인접 노드가 두 개 이상일 수도 있기 때문에
+vector<char> route; // 방문 경로. result 대시 더 직관적인 이름으로 route를 사용함.
+unordered_set<char> visited; // 방문한 노드
 
-// 트리 - 깊이 우선 탐색 구현
-// 인접 리스트를 이용한 깊이 우선 탐색 알고리즘. 재귀 함수로 구현. 
-
+// 깊이 우선 탐색 재귀 함수
 void dfs(char node) {
-    // 현재 노드를 방문한 목록과 방문한 경로에 추가
+    // 해당 노드를 방문처리와 방문 기록을 한다.
+    route.push_back(node);
     visited.insert(node);
-    result.push_back(node);
 
-    // 현재 노드와 인접한 노드 중, 방문하지 않은 노드에 깊이 우선 탐색을 계속 진행
-    for (char neighbor : adjList[node]) {
-        if (visited.find(neighbor) == visited.end()) { // 인접 리스트에서 꺼내온 노드가 방문자 기록 집합에 없으면
-            dfs(neighbor); // 재귀 함수로 돌려버림
+    // 인접 노드를 찾는다.
+    for (char n : adjList[node]) {
+        if (visited.find(n) == visited.end()) { // 해당 인접 노드가 아직 방문하지 않았다면
+            dfs(n); // 재귀로 함수 돌린다. 이러한 구조는 시스템 스택을 이용한 것이므로 인접 노드의 인접 노드를 우선적으로 타고 들어가서 방문하는 구조를 만든다.
         }
     }
 }
 
+// 깊이 우선 탐색. 인접 리스트와 재귀 함수를 이용하여 구현.
+// 깊이 우선 탐색은 해당 인접 노드의 인접 노드를 우선적으로 탐색하는 방식.
 vector<char> solution(vector<pair<char, char>> graph, char start) {
-    // 인접 리스트 생성
+    // 인접 리스트를 구죽해준다.
     for (auto &edge : graph) {
-        char u = edge.first;
+        char u = edge.first; // pair 자료 구조는 first와 second로 이루어져 있음.
         char v = edge.second;
-        adjList[u].push_back(v);
+        adjList[u].push_back(v); // adjList는 맵으로 key는 char고 value는 vector임 그래서 인덱스 접근 방식으로 접근하고 벡터 삽입 함수인 push_back을 사용.
     }
 
-    // 시작 노드부터 깊이 우선 탐색 시작
-    dfs(start);
-    return result;
+    dfs(start); // 시작 노드를 넣고 돌린다.
+
+    return route;
+
 }
 
 
 int main() {
 
+    vector<pair<char, char>> graph = {{'A', 'B'}, {'A', 'C'}, {'B', 'D'}, {'B', 'E'}, {'C', 'F'}, {'E', 'F'}};
+    char start = 'A';
+    
+    vector<char> result = solution(graph, start);
+    
 
-
+    for (char i : result) {
+        cout << i << " ";
+    }
 
     return 0;
 }
-
-// 깊이 우선 탑색은 기본적으로 스택으로 구현된다고 생각하면 된다.
-// 스택을 직접 이용하지 않고, 재귀함수로 구현해도 시스템 스택을 이용하는 것이므로 결국엔 스택의 원리를 이용하는 것.
