@@ -30,21 +30,26 @@ vector<int> solution(int start, int numNodes, vector<tuple<int, int, int>> edges
 
     ////////////////////////////////////여기 까지는 초기화 단계////////////////////////////////////
 
+
+
+    
+
     for (int i = 0; i < numNodes - 1; ++i) { // 반복 횟수를 노드 수 - 1 번 반복한다. i가 노드를 의미하는 것이 아니다.
         int minDistance = INF; // 현재 최소 거리를 표현
-        int closestNode = -1;
-        // 왜 반복 횟수를 노드 수에서 하나를 뺏을까?
-        for (int j = 0; j < numNodes; ++j) {
+        int closestNode = -1;  // 현재 최소 거리 노드
+        
+        // 방문하지 않은 노드 중 최소 거리인 노드 찾기
+        for (int j = 0; j < numNodes; ++j) { // 노드 순회
 
-            if (!visited[j] && distances[j] < minDistance) {
-                minDistance = distances[j];             // 0 - 0 최소 거리 0
-                closestNode = j;                        // 직전 노드 0
+            if (!visited[j] && distances[j] < minDistance) { // 현재 노드중 방문하지 않았고, 가중치가 최소값인 경우
+                minDistance = distances[j];
+                closestNode = j;
             }
         }
 
-        visited[closestNode] = true; // 0번 노드 방문 처리
+        visited[closestNode] = true; // 현재 방문하지 않고 가장 가까운 노드 방문 처리
 
-        // 인접 노드에 대한 거리 업데이트
+        // 현재 가장 가까운 노드를 가지고 각 노드까지의 최소 거리 갱신
         for (int j = 0; j < numNodes; ++j) {
             int newDistance = distances[closestNode] + graph[closestNode][j]; // 직전 노드인 0번 노드까지의 거리 + 직전 노드인 0번 노드에서 j번 노드 까지의 거리.
             if (!visited[j] && graph[closestNode][j] != INF && newDistance < distances[j]) { // 아직 방문 안한 노드 중에서, 간선이 존재하고(graph에서 INF값이 들어가 있으면 간선이 존재하지 않다는 의미
@@ -53,12 +58,7 @@ vector<int> solution(int start, int numNodes, vector<tuple<int, int, int>> edges
             }
         }
     }
-    /*
-    결국 중요한건 시작 노드부터 각 노드까지의 최소 거리를 구하는 것이 중요한 것.
-    방문 찍는게 중요한게 아님.
-    (노드 수 - 1) 만큼 순회하는 이유는 구해야할 최소 거리의 개수가 노드 수 - 1 이기 때문
-    마지막 노드는 방문을 찍지 않아도 되기 때문.
-    */
+    
     return distances;
 }
 
