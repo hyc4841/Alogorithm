@@ -4,39 +4,62 @@
 using namespace std;
 
 vector<int> answer;
-vector<bool> earnedPoint; // 획득한 점수
-vector<int> apeach;
+vector<int> ryan(11, 0);
+int maxScore = -1;
 
+int calcScoreDiff(const vector<int> &apeach) {
+    int scoreApeach = 0;
+    int scoreLion = 0;
 
-
-bool canShoot(int arrowNum, int point) { // 쏠 수 있는 화살의 개수를 넘겨 받는다.
-    return arrowNum > apeach[point]; // 남은 화살의 개수가 어피치가 i번째 과녁을 맞춘 화살의 개수보다 많으면 쏠 수 있음
-}
-
-void shoot(int remainArrow) { // 남은 화살의 개수를 매개변수로 받는다.
-
-    // 넘겨받은 남은 화살의 개수로 과녁 맞추기를 실행한다.
-    for (int i = 0; i < earnedPoint.size(); i++) {
-        if (earnedPoint[i] == false && canShoot(remainArrow, i)) { // 아직 i 번째 과녁의 점수를 획득하지 않은 상태고, 해당 과녁에 쏠 수 있으면
-            earnedPoint[i] = true; // 점수 획득 표시
-            
-            if (remainArrow - apeach[i] == 0) { // 쏠 수 있는 화살을 다 쓰면 이전 점수와 비교하여 정답을 갱신한다.
-
-                
-            }
-
+    for (int i = 0; i < 11; ++i) {
+        if (apeach[i] == 0 && ryan[i] == 0) {
+            continue;
+        }
+        if (apeach[i] >= ryan[i]) {
+            scoreApeach += 10 - i;
+        }
+        else {
+            scoreLion += 10 - i;
         }
     }
 
+    return scoreLion - scoreApeach;
 }
 
-vector<int> solution(int n, vector<int> info) { // n : 쏠 수 있는 화살의 개수, info : 맞춘 과녁의 정보
-    // 큰 점수를 먼저 선점하는 방식으로 진행
-    // shot() 함수를 만들어서 쏠 수 있는 화살의 개수를 넘겨준다.
-    // shot() 함수에선 쏠 수 있는 화살의 개수를 가지고 현재 가장 높은 점수를 획득할 수 있는 없는지 판단하는 isValid() 함수로 판단하고 맞출 수 있다면 맞추고 다음 shot() 함수로 넘어간다.
-    apeach = info;
+void dfs(const vector<int> apeach, int score, int arrow) { // 어피치가 쏜 과녁과 화살 개수 정보, 현재 과녁 점수, 남은 화살의 개수
 
-    shoot(n);
+    if (score == -1 || arrow == 0) { // score는 -1 씩 숫자가 낮아지므로 마지막 0점 까지 돌고 -1이 되면 최종 점수차이를 계산한다.
+        ryan[10] = arrow;  // 남은 화살의 개수를 0점에 모두 쏜다.
+        int socreDiff = calcScoreDiff(apeach); // 라이언과 어피치의 점수 차이 계산
+
+        // 현재 구한 점수 차가 기존 최대 점수 차보다 크고, 라이언의 점수가 더 높으면 갱신
+        if (socreDiff > 0 && maxScore < socreDiff) { // 점수차이가 0보다 크고 이전에 구했던 점수 차이보다 크면
+            maxScore = socreDiff; // 최대 점수차이 갱신한다.
+            answer = ryan; // 정답은 현재 라이언이 쏜 과녁으로 한다.
+        }
+
+        ryan[10] = 0;
+        return;
+    }
+
+    // 현재 점수에서 라이언이 쏠 수 있는 화살의 개수가 현재 점수에 꽂혀 있는 어피치의 화살의 개수보다 많으면 해당 과녁에 화살을 사용하고 점수를 획득한다.
+    if (arrow > apeach[score]) { 
+        ryan[score] = apeach[score] + 1;
+        dfs(apeach, score - 1, arrow - apeach[score] - 1);
+        ryan[score] = 0;
+    }
+
+    // 현재 점수를 건너뛰는 경우.
+    dfs(apeach, score - 1, arrow);
+}
+
+vector<int> solution(int n, vector<int> info) { 
+    // 10점 과녁부터 모든 조합을 확인
+    dfs(info, 10, n);
+
+    if (maxScore == -1) {
+        answer.push_back(-1);
+    }
 
     return answer;
 }
